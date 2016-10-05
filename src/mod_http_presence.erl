@@ -31,16 +31,16 @@ stop(_Host) ->
 
 on_set(User, Server, _Resource, _Packet) ->
 %%    ?INFO_MSG("~p - ~p - changed status", [User, Server]),
-    http_request("status_change", User, Server),
+    http_request("status_change", User, Server, _Resource),
     ok.
 
 on_unset(User, Server, _Resource, _Packet) ->
 %%    ?INFO_MSG("~p - ~p - logged out", [User, Server]),
-    http_request("logout", User, Server),
+    http_request("logout", User, Server, _Resource),
     ok.
 
-http_request(Action, User, Server) ->
-    Request = "action=" ++ Action ++ "&user=" ++ binary_to_list(User) ++ "@" ++ binary_to_list(Server),
+http_request(Action, User, Server, Resource) ->
+    Request = "action=" ++ Action ++ "&user=" ++ binary_to_list(User) ++ "@" ++ binary_to_list(Server) ++ "&resource=" ++ binary_to_list(Resource),
     Url = get_opt(url),
     httpc:request(post, {Url, [], "application/x-www-form-urlencoded", Request}, [], []),
     ok.
