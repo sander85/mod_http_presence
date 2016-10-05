@@ -1,3 +1,0 @@
-modules:
-  mod_http_presence:
-    url: "http://example.com/your/code.php"

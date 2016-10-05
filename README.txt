@@ -7,5 +7,6 @@ parameters:
 	specified_url -> action=logout&user=user@example.com
 
 How to configure:
+modules:
   mod_http_presence:
     url: "http://example.com/your/code.php"
